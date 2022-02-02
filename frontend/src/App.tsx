@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 
 import {
+  StyledButton,
   StyledCenter,
   StyledTextArea,
   StyledTextAreaContainer,
@@ -14,15 +15,16 @@ const App: FC = () => {
   return (
     <StyledWrapper>
       <StyledCenter>
-        <StyledTitle>Lovebox at home 🏠</StyledTitle>
+        <StyledTitle>lovebox @ 🏠</StyledTitle>
         <StyledTextAreaContainer isFocused={isFocused}>
           <StyledTextArea
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             rows={4}
-            placeholder="New message..."
+            placeholder="new message..."
           />
         </StyledTextAreaContainer>
+        <StyledButton>send</StyledButton>
       </StyledCenter>
     </StyledWrapper>
   );

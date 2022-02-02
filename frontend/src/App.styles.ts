@@ -19,9 +19,6 @@ export const StyledTitle = styled.h1`
 `;
 
 export const StyledTextAreaContainer = styled.div<{ isFocused: boolean }>`
-  height: 100px;
-  width: 100%;
-  margin-right: 8px;
   transition: border 200ms ease;
   border: 2px solid ${({ isFocused }) => (isFocused ? "#cad8ff" : "#979797")};
   padding: 8px;
@@ -54,5 +51,26 @@ export const StyledTextArea = styled.textarea`
     font-size: 15px;
     line-height: 20px;
     color: #f2f2f2;
+  }
+`;
+
+export const StyledButton = styled.button`
+  padding: 8px 16px;
+  color: #282c34;
+  background-color: pink;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: inherit;
+  display: flex;
+  transition: background-color 200ms ease;
+  border-radius: 16px;
+  margin-top: 8px;
+  margin-left: auto;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+
+  &:hover {
+    background-color: white;
   }
 `;
