@@ -74,3 +74,17 @@ export const StyledButton = styled.button`
     background-color: white;
   }
 `;
+
+export const StyledH2 = styled.span<{ color?: string }>`
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: ${({ color }) => (color ? color : "white")};
+`;
+
+export const StyledBody = styled.span<{ color?: string; bold?: boolean }>`
+  font-weight: ${({ bold }) => (bold ? 700 : 500)};
+  font-size: 15px;
+  line-height: 20px;
+  color: ${({ color }) => (color ? color : "white")};
+`;
