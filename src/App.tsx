@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState } from "react";
 
 import axios from "axios";
 
@@ -9,6 +9,7 @@ import {
   StyledTextAreaContainer,
   StyledTitle,
   StyledWrapper,
+  StyledH2,
   StyledBody,
 } from "./App.styles";
 import useData from "./useData";
@@ -35,8 +36,9 @@ const App: FC = () => {
   return (
     <StyledWrapper>
       <StyledCenter>
-        <StyledTitle>lovebox @ 🏠</StyledTitle>
-        {currentMessage ? (
+        <StyledTitle>lovebox at home</StyledTitle>
+        <StyledH2>💌 @ 🏠</StyledH2>
+        {currentMessage && (
           <>
             <div>
               <StyledBody bold color="#979797">
@@ -52,21 +54,22 @@ const App: FC = () => {
               <StyledBody>{currentMessage.timestamp}</StyledBody>
             </div>
           </>
-        ) : (
-          <>
-            <StyledTextAreaContainer isFocused={isFocused}>
-              <StyledTextArea
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                rows={4}
-                placeholder="new message..."
-                value={newMsg}
-                onChange={(e) => setNewMsg(e.target.value)}
-              />
-            </StyledTextAreaContainer>
-            <StyledButton onClick={handleSend}>send</StyledButton>
-          </>
         )}
+        <hr />
+        <StyledH2>Send new message:</StyledH2>
+        <StyledTextAreaContainer isFocused={isFocused}>
+          <StyledTextArea
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            rows={4}
+            placeholder="new message..."
+            value={newMsg}
+            onChange={(e) => setNewMsg(e.target.value)}
+          />
+        </StyledTextAreaContainer>
+        <StyledButton onClick={handleSend}>send</StyledButton>
+        <hr />
+        <StyledH2>Log</StyledH2>
       </StyledCenter>
     </StyledWrapper>
   );
