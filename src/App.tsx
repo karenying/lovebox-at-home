@@ -1,4 +1,6 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
+
+import axios from "axios";
 
 import {
   StyledButton,
@@ -7,34 +9,47 @@ import {
   StyledTextAreaContainer,
   StyledTitle,
   StyledWrapper,
-  StyledH2,
   StyledBody,
 } from "./App.styles";
+import useData from "./useData";
 
 const App: FC = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [newMsg, setNewMsg] = useState("");
-  const currMsg = "Hello world";
-  const lastUpdated = Date.now();
+
+  const { currentMessage, pastMessages } = useData();
+
+  const handleSend = () => {
+    axios
+      .post("api/message", {
+        message: newMsg,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <StyledWrapper>
       <StyledCenter>
         <StyledTitle>lovebox @ 🏠</StyledTitle>
-        {currMsg ? (
+        {currentMessage ? (
           <>
             <div>
               <StyledBody bold color="#979797">
                 Currently displayed:{" "}
               </StyledBody>
-              <StyledBody>{currMsg}</StyledBody>
+              <StyledBody>{currentMessage.content}</StyledBody>
             </div>
 
             <div>
               <StyledBody bold color="#979797">
                 Last updated:{" "}
               </StyledBody>
-              <StyledBody>{lastUpdated}</StyledBody>
+              <StyledBody>{currentMessage.timestamp}</StyledBody>
             </div>
           </>
         ) : (
@@ -49,7 +64,7 @@ const App: FC = () => {
                 onChange={(e) => setNewMsg(e.target.value)}
               />
             </StyledTextAreaContainer>
-            <StyledButton onClick={() => alert()}>send</StyledButton>
+            <StyledButton onClick={handleSend}>send</StyledButton>
           </>
         )}
       </StyledCenter>
